@@ -1,0 +1,7 @@
+pandas
+requests
+yfinance
+matplotlib
+pytz
+python-binance
+scipy
