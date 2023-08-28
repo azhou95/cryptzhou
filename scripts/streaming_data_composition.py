@@ -1,6 +1,8 @@
 import asyncio
 import logging
 
+from streaming_data_providers.binance_data_provider import BinanceStreamingDataProvider
+from streaming_data_providers.coinbase_data_provider import CoinbaseStreamingDataProvider
 from streaming_data_providers.mock_streaming_data_provider import MockStreamingDataProvider
 
 
@@ -38,7 +40,7 @@ class StreamComposer:
 
 def brownian(start=0, delta=0.25, dt=0.1):
     """
-    naive brownian motion gen
+    naive brownian motion gen for testing
     """
     from scipy.stats import norm
     x = start
@@ -48,8 +50,12 @@ def brownian(start=0, delta=0.25, dt=0.1):
 
 
 async def main():
-    streaming_data_provider_1 = MockStreamingDataProvider(1, brownian(20000))
-    streaming_data_provider_2 = MockStreamingDataProvider(2, brownian(20000))
+    # streaming_data_provider_1 = MockStreamingDataProvider(1, brownian(20000))
+    # streaming_data_provider_2 = MockStreamingDataProvider(2, brownian(20000))
+
+    streaming_data_provider_1 = BinanceStreamingDataProvider()
+    await streaming_data_provider_1.start()
+    streaming_data_provider_2 = CoinbaseStreamingDataProvider()
 
     stream_composer = StreamComposer(streaming_data_provider_1, streaming_data_provider_2)
     await stream_composer.start()

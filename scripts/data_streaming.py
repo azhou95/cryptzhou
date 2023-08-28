@@ -21,7 +21,8 @@ async def main():
     async with bsm.trade_socket('ETHBTC') as ts:
         for _ in range(5):
             res = await ts.recv()
-            print(f'recv {res["price"]}')
+            print(res)
+            # print(f'recv {res["price"]}')
 
 
 if __name__ == "__main__":
