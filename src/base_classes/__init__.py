@@ -1,1 +1,1 @@
-from .historical_data_providers import HistoricalDataProvider
+from .streaming_data_provider import StreamingDataProvider

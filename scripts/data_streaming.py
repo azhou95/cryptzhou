@@ -18,7 +18,7 @@ async def main():
 
     # create listener using async with
     # this will exit and close the connection after 5 messages
-    async with bsm.trade_socket('ETHBTC') as ts:
+    async with bsm.kline_socket('ETHBTC') as ts:
         for _ in range(5):
             res = await ts.recv()
             print(res)
